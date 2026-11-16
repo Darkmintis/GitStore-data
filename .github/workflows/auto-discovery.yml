@@ -1,0 +1,45 @@
+name: Auto Discovery
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily midnight UTC
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Discover Android apps
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCOVERY_OUTPUT_DIR: trending
+        run: python scripts/discover.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git status --porcelain trending/ | grep .; then
+            git add trending/
+            git commit -m "Update trending ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
+            git push origin main
+          else
+            echo "No trending changes"
+          fi

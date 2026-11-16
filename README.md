@@ -16,13 +16,14 @@ https://cdn.jsdelivr.net/gh/Darkmintis/GitStore-data@main/catalog/apps.json
 | Path | Purpose |
 |------|---------|
 | `trending/` | Daily trending seed (`apps.json`) |
-| `catalog/` | Searchable APK-verified catalog (filled by discovery later) |
+| `catalog/` | Searchable APK-verified catalog (filled later) |
+| `scripts/` | Discovery (`discover.py`) — this is the source of truth |
 
 ## How it updates
 
-The app repo’s `auto-discovery` workflow runs `scripts/discover.py`, commits to **GitStore** `cached-data/` (legacy ≤1.4.x clients), then mirrors `trending/` here when secret `GITSTORE_DATA_TOKEN` is set.
+Daily Actions (`auto-discovery.yml`) runs `scripts/discover.py` with the workflow `GITHUB_TOKEN` and commits `trending/`.
 
-Phones never write to this repo.
+The app repo **mirrors** that file into `cached-data/` for ≤1.4.x clients only. No cross-repo PAT required.
 
 ## License
 
@@ -30,11 +31,6 @@ MIT — see `LICENSE`. The JSON is metadata about public GitHub repos (links, st
 
 ## Public use
 
-Anyone can hit the jsDelivr URLs (same as any public GitHub file). That is fine for other FOSS clients. There is **no API key** and **no per-user quota we control**.
+Anyone can hit the jsDelivr URLs. Fine for other FOSS clients. No API key; no per-user quota we control.
 
-Limits that apply:
-- **jsDelivr** — public CDN fair use; very high for small JSON; extreme abuse may be throttled
-- **GitHub** — raw/API limits only if someone bypasses jsDelivr; our Actions PAT is separate and not exposed
-- **Us** — cost is Actions minutes + repo size, not per CDN request
-
-If a client hammers GitHub *releases* after reading this catalog, that hits GitHub’s limits on *their* IP/token, not ours. Please cache responses and keep polling polite.
+Limits: jsDelivr fair use; GitHub API only if someone bypasses the CDN; our cost is Actions minutes + repo size. Please cache and poll politely.
