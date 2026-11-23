@@ -1,361 +1,224 @@
 #!/usr/bin/env python3
 """
-Git Store - Intelligent Discovery Engine
-Advanced system for discovering high-quality Android apps from GitHub
-Uses smart filtering, trending analysis, and APK verification
-Based on proven fetching_trending.py algorithm
+Git Store discovery. Runs daily (midnight UTC) and writes, all in the same schema:
+
+  catalog/apps.json   every APK-verified repo we know about (app searches this locally)
+  trending/apps.json  biggest star GAIN since the previous run (falls back to recent+stars on day 1)
+  new/apps.json       repos created in the last 30 days, newest first
+  popular/apps.json   most-starred repos pushed in the last 30 days
+  catalog/state.json  verification memory so we never re-check the same repo daily
+
+Verification = latest non-draft release has an .apk (stable preferred, prerelease accepted;
+same rule as the app's search). Each run verifies at most MAX_VERIFY new repos, so the
+catalog grows over several days instead of blowing the API budget.
 """
 
+import json
 import os
 import sys
-import json
-import requests
-from datetime import datetime, timedelta, timezone
-from typing import List, Dict, Optional, Tuple
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-# Validate GITHUB_TOKEN early
-GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
-if not GITHUB_TOKEN:
-    print("ERROR: GITHUB_TOKEN environment variable is not set or is empty.", file=sys.stderr)
-    print("Please set GITHUB_TOKEN before running this script.", file=sys.stderr)
-    sys.exit(1)
+import requests
 
-HEADERS = {
-    'Authorization': f'token {GITHUB_TOKEN}',
-    'Accept': 'application/vnd.github.v3+json'
-}
+TOKEN = os.environ.get("GITHUB_TOKEN")
+if not TOKEN:
+    sys.exit("ERROR: GITHUB_TOKEN is not set")
 
-# Android platform configuration
-PLATFORM_CONFIG = {
-    'topics': ['android'],
-    'installer_extensions': ['.apk'],
-    'score_keywords': ['android', 'mobile', 'kotlin', 'java', 'apk']
-}
+API = "https://api.github.com"
+HEADERS = {"Authorization": f"Bearer {TOKEN}", "Accept": "application/vnd.github+json"}
+TOPICS = ["android", "android-app"]
+# GitHub search returns max 1000 hits per query, so slice by star bands to go deeper.
+STAR_BANDS = [">5000", "1000..5000", "500..999", "200..499", "100..199", "50..99", "20..49"]
+MAX_VERIFY = int(os.environ.get("MAX_VERIFY", 600))         # new release checks per run (budget: 1000 core req/hr)
+HIT_RECHECK_DAYS = 14     # re-verify a known app this often
+MISS_RECHECK_DAYS = 14    # retry a known non-app this often
+LIST_SIZE = 50
+BAND_PAGES = int(os.environ.get("BAND_PAGES", 10))  # GitHub caps a query at 10 pages
+OUT = Path(os.environ.get("DISCOVERY_ROOT", "."))
 
-MAX_RETRIES = 5
-INITIAL_BACKOFF = 2  # seconds
+NOW = datetime.now(timezone.utc)
+TODAY = NOW.date().isoformat()
 
-def exponential_backoff_sleep(attempt: int, retry_after: Optional[int] = None) -> None:
-    """Sleep with exponential backoff, respecting Retry-After if provided"""
-    if retry_after:
-        sleep_time = retry_after
-        print(f"Rate limited - sleeping for {sleep_time}s (from Retry-After header)")
-    else:
-        sleep_time = min(INITIAL_BACKOFF * (2 ** attempt), 60)  # Cap at 60 seconds
-        print(f"Backoff attempt {attempt + 1} - sleeping for {sleep_time}s")
-    time.sleep(sleep_time)
 
-def make_request_with_retry(url: str, params: Optional[Dict] = None, timeout: int = 30) -> Tuple[Optional[requests.Response], Optional[str]]:
-    """
-    Make HTTP request with retry logic for rate limits and server errors
-    Returns: (response, error_message) - response is None if all retries failed
-    """
-    for attempt in range(MAX_RETRIES):
+def day(n: int) -> str:
+    return (NOW - timedelta(days=n)).strftime("%Y-%m-%d")
+
+
+def get(url, params=None):
+    """GET with minimal retry; sleeps through rate limits. Returns Response or None."""
+    for attempt in range(5):
         try:
-            response = requests.get(url, headers=HEADERS, params=params, timeout=timeout)
+            r = requests.get(url, headers=HEADERS, params=params, timeout=30)
+        except requests.RequestException as e:
+            print(f"  network error: {e}")
+            time.sleep(2 ** attempt)
+            continue
+        if r.status_code == 200:
+            return r
+        limited = r.status_code == 429 or (r.status_code == 403 and "rate limit" in r.text.lower())
+        if limited:
+            reset = int(r.headers.get("X-RateLimit-Reset", 0))
+            wait = int(r.headers.get("Retry-After", 0)) or max(reset - int(time.time()), 1)
+            if wait > 120:  # out of budget: stop instead of hanging the job
+                print(f"  rate limited for {wait}s, giving up on {url}")
+                return None
+            print(f"  rate limited, sleeping {wait}s")
+            time.sleep(wait + 1)
+            continue
+        if r.status_code >= 500:
+            time.sleep(2 ** attempt)
+            continue
+        print(f"  {r.status_code} for {url}")
+        return None
+    return None
 
-            # Success
-            if response.status_code == 200:
-                return response, None
 
-            # Rate limiting (403 or 429)
-            if response.status_code in [403, 429]:
-                retry_after = response.headers.get('Retry-After')
-                retry_after_int = int(retry_after) if retry_after and retry_after.isdigit() else None
+def has_apk(full_name: str):
+    """True/False, or None when the check itself failed (don't remember failures)."""
+    r = get(f"{API}/repos/{full_name}/releases", {"per_page": 10})
+    if r is None:
+        return None
+    rels = [x for x in r.json() if not x.get("draft")]
+    def apk(x):
+        return any(a["name"].lower().endswith(".apk") for a in x.get("assets", []))
+    return any(apk(x) for x in rels if not x.get("prerelease")) or any(apk(x) for x in rels)
 
-                # Check if this is actually a rate limit (GitHub returns specific message)
-                try:
-                    error_data = response.json()
-                    is_rate_limit = 'rate limit' in error_data.get('message', '').lower()
-                except Exception:
-                    is_rate_limit = response.status_code == 429
 
-                if is_rate_limit:
-                    print(f"Rate limit hit (status {response.status_code}) for {url}")
-                    if attempt < MAX_RETRIES - 1:
-                        exponential_backoff_sleep(attempt, retry_after_int)
-                        continue
-                    else:
-                        error_msg = f"Rate limit exceeded after {MAX_RETRIES} retries"
-                        print(f"ERROR: {error_msg}", file=sys.stderr)
-                        return None, error_msg
-                else:
-                    # 403 but not rate limit (e.g., permission denied)
-                    error_msg = f"Access forbidden (403) for {url}: {response.text[:200]}"
-                    print(f"ERROR: {error_msg}", file=sys.stderr)
-                    return None, error_msg
+def search(query: str, sort: str, pages: int):
+    for page in range(1, pages + 1):
+        r = get(f"{API}/search/repositories",
+                {"q": query, "sort": sort, "order": "desc", "per_page": 100, "page": page})
+        if r is None:
+            return
+        items = r.json().get("items", [])
+        yield from items
+        if len(items) < 100:
+            return
+        time.sleep(2)  # search API: 30 req/min
 
-            # Server errors (5xx)
-            if 500 <= response.status_code < 600:
-                print(f"Server error {response.status_code} for {url}: {response.text[:200]}")
-                if attempt < MAX_RETRIES - 1:
-                    exponential_backoff_sleep(attempt)
-                    continue
-                else:
-                    error_msg = f"Server error {response.status_code} after {MAX_RETRIES} retries"
-                    print(f"ERROR: {error_msg}", file=sys.stderr)
-                    return None, error_msg
 
-            # Other non-200 responses (4xx except 403/429)
-            error_msg = f"Request failed with status {response.status_code} for {url}: {response.text[:200]}"
-            print(f"ERROR: {error_msg}", file=sys.stderr)
-            return None, error_msg
-
-        except requests.Timeout:
-            print(f"Timeout for {url} (attempt {attempt + 1}/{MAX_RETRIES})")
-            if attempt < MAX_RETRIES - 1:
-                exponential_backoff_sleep(attempt)
-                continue
-            else:
-                error_msg = f"Timeout after {MAX_RETRIES} attempts"
-                print(f"ERROR: {error_msg}", file=sys.stderr)
-                return None, error_msg
-
-        except Exception as e:
-            error_msg = f"Exception during request to {url}: {str(e)}"
-            print(f"ERROR: {error_msg}", file=sys.stderr)
-            if attempt < MAX_RETRIES - 1:
-                exponential_backoff_sleep(attempt)
-                continue
-            else:
-                return None, error_msg
-
-    return None, "Max retries exceeded"
-
-def calculate_quality_score(repo: Dict) -> int:
-    """Calculate relevance score for a repository"""
-    score = 5
-    topics = [t.lower() for t in repo.get('topics', [])]
-    language = (repo.get('language') or '').lower()
-    desc = (repo.get('description') or '').lower()
-
-    keywords = PLATFORM_CONFIG['score_keywords']
-
-    for keyword in keywords:
-        if keyword in topics:
-            score += 10
-        if keyword in desc:
-            score += 3
-
-    if language in ['kotlin', 'c++', 'rust', 'c#', 'swift', 'dart', 'java']:
-        score += 5
-
-    if 'cross-platform' in topics or 'multiplatform' in topics:
-        score += 8
-
-    return score
-
-def check_repo_has_apk_releases(owner: str, repo_name: str) -> bool:
-    """Check if repository has APK files in releases with retry logic"""
-    url = f'https://api.github.com/repos/{owner}/{repo_name}/releases'
-
-    response, error = make_request_with_retry(url, params={'per_page': 10}, timeout=10)
-
-    if response is None:
-        print(f"Failed to check APK releases for {owner}/{repo_name}: {error}")
-        return False
-
-    try:
-        releases = response.json()
-
-        # Find first stable release (NOT draft, NOT prerelease)
-        stable_release = None
-        for release in releases:
-            if not release.get('draft') and not release.get('prerelease'):
-                stable_release = release
-                break
-
-        if not stable_release or not stable_release.get('assets'):
-            return False
-
-        # Check for APK files
-        extensions = PLATFORM_CONFIG['installer_extensions']
-        for asset in stable_release['assets']:
-            asset_name = asset['name'].lower()
-            if any(asset_name.endswith(ext) for ext in extensions):
-                return True
-
-        return False
-
-    except Exception as e:
-        print(f"Error parsing releases for {owner}/{repo_name}: {e}")
-        return False
-
-def build_query(base_query: str, topics: List[str]) -> str:
-    """Build GitHub search query with support for multiple topics"""
-    if not topics:
-        return base_query
-
-    # Create OR condition for multiple topics
-    if len(topics) == 1:
-        topic_query = f"topic:{topics[0]}"
-    else:
-        topic_parts = [f"topic:{topic}" for topic in topics]
-        topic_query = " OR ".join(topic_parts)
-        topic_query = f"({topic_query})"
-
-    return f"{base_query} {topic_query}"
-
-def discover_android_apps(desired_count: int = 50) -> List[Dict]:
-    """Discover trending Android repositories with APK releases"""
-    print("\n" + "="*60)
-    print("🚀 DISCOVERING ANDROID APPS WITH APK RELEASES")
-    print("="*60)
-
-    url = 'https://api.github.com/search/repositories'
-    topics = PLATFORM_CONFIG['topics']
-
-    results: List[Dict] = []
-    seen: set = set()
-    attempt = 0
-    max_attempts = 4
-
-    while len(results) < desired_count and attempt < max_attempts:
-        attempt += 1
-        days = 7 * (2 ** (attempt - 1))  # 7, 14, 28, 56 days
-        stars_min = max(500 // (2 ** (attempt - 1)), 50)  # 500, 250, 125, 62 -> min 50
-        current_topics = topics if attempt < 3 else []  # Drop topics on later attempts to broaden search
-
-        past_date = (datetime.now(timezone.utc) - timedelta(days=days)).strftime('%Y-%m-%d')
-        base_query = f'stars:>{stars_min} archived:false pushed:>={past_date}'
-        query = build_query(base_query, current_topics)
-
-        print(f"\n📊 Attempt {attempt}/{max_attempts}: ")
-        print(f"   ⏰ Days: {days} | ⭐ Stars>{stars_min} | 🏷️  Topics: {current_topics or 'none'}")
-        print(f"   🔍 Query: {query}")
-
-        page = 1
-        max_pages = 10  # Increased to allow more candidates
-
-        while len(results) < desired_count and page <= max_pages:
-            print(f"\n   📄 Fetching API page {page}...")
-
-            params = {
-                'q': query,
-                'sort': 'stars',
-                'order': 'desc',
-                'per_page': 100,
-                'page': page
-            }
-
-            response, error = make_request_with_retry(url, params=params, timeout=30)
-
-            if response is None:
-                print(f"   ❌ Failed to fetch page {page}: {error}")
-                break
-
-            try:
-                data = response.json()
-                items = data.get('items', [])
-
-                print(f"   📦 Got {len(items)} repositories from API")
-
-                if not items:
-                    break
-
-                # Score and filter candidates
-                candidates = []
-                for repo in items:
-                    score = calculate_quality_score(repo)
-                    if score >= 5:
-                        candidates.append((repo, score))
-
-                # Sort by score and take top 50
-                candidates.sort(key=lambda x: x[1], reverse=True)
-                candidates = [repo for repo, _ in candidates[:50]]
-
-                print(f"   ✨ Checking {len(candidates)} top candidates for APK releases...")
-
-                # Check each candidate for APK releases
-                for repo in candidates:
-                    if len(results) >= desired_count:
-                        break
-
-                    full_name = repo['full_name']
-                    if full_name in seen:
-                        continue
-
-                    owner = repo['owner']['login']
-                    name = repo['name']
-
-                    print(f"      [{len(results)+1}/{desired_count}] {owner}/{name}...", end=' ')
-
-                    if check_repo_has_apk_releases(owner, name):
-                        # Transform to summary format
-                        summary = {
-                            'id': repo['id'],
-                            'name': repo['name'],
-                            'fullName': full_name,
-                            'owner': {
-                                'login': owner,
-                                'avatarUrl': repo['owner']['avatar_url']
-                            },
-                            'description': repo.get('description'),
-                            'defaultBranch': repo.get('default_branch', 'main'),
-                            'htmlUrl': repo['html_url'],
-                            'stargazersCount': repo['stargazers_count'],
-                            'forksCount': repo['forks_count'],
-                            'language': repo.get('language'),
-                            'topics': repo.get('topics', []),
-                            'releasesUrl': repo['releases_url'],
-                            'updatedAt': repo['updated_at']
-                        }
-                        results.append(summary)
-                        seen.add(full_name)
-                        print(f"✅ FOUND (⭐ {repo['stargazers_count']})")
-                    else:
-                        print("❌ No stable APK")
-
-                    seen.add(full_name)  # Add to seen even if no APK to avoid rechecking
-                    time.sleep(0.5)  # Rate limit protection
-
-                page += 1
-
-            except Exception as e:
-                print(f"   ❌ Error processing page {page}: {e}", file=sys.stderr)
-                break
-
-    # Sort final results by stargazers count descending and truncate to desired count
-    results.sort(key=lambda x: x['stargazersCount'], reverse=True)
-    results = results[:desired_count]
-
-    print(f"\n{'='*60}")
-    print(f"✅ DISCOVERY COMPLETE: {len(results)} apps found")
-    print(f"{'='*60}\n")
-
-    return results
-
-def main():
-    """Main function to discover and save Android apps"""
-    timestamp = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-
-    print("\n🚀 Starting Android App Discovery...")
-
-    repos = discover_android_apps(desired_count=50)
-
-    if not repos:
-        print("⚠️  Warning: No apps discovered!", file=sys.stderr)
-        sys.exit(1)
-
-    output = {
-        'lastUpdated': timestamp,
-        'totalCount': len(repos),
-        'repositories': repos
+def summarize(repo: dict) -> dict:
+    return {
+        "id": repo["id"],
+        "name": repo["name"],
+        "fullName": repo["full_name"],
+        "owner": {"login": repo["owner"]["login"], "avatarUrl": repo["owner"]["avatar_url"]},
+        "description": repo.get("description"),
+        "defaultBranch": repo.get("default_branch", "main"),
+        "htmlUrl": repo["html_url"],
+        "stargazersCount": repo["stargazers_count"],
+        "forksCount": repo["forks_count"],
+        "language": repo.get("language"),
+        "topics": repo.get("topics", []),
+        "releasesUrl": repo["releases_url"],
+        "updatedAt": repo["updated_at"],
+        "createdAt": repo["created_at"],
+        "pushedAt": repo["pushed_at"],
     }
 
-    # Save to file
-    output_dir = os.environ.get('DISCOVERY_OUTPUT_DIR', 'trending')
-    os.makedirs(output_dir, exist_ok=True)
 
-    output_file = f'{output_dir}/apps.json'
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
+def load(path: Path, default):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return default
 
-    print(f"✅ Saved {len(repos)} apps to {output_file}")
-    print(f"📊 File size: {os.path.getsize(output_file) / 1024:.1f} KB")
-    print("\n🎉 Discovery completed successfully!\n")
 
-if __name__ == '__main__':
+def write(folder: str, repos: list):
+    path = OUT / folder / "apps.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(
+        {"lastUpdated": NOW.isoformat().replace("+00:00", "Z"), "totalCount": len(repos),
+         "repositories": repos}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"wrote {folder}/apps.json: {len(repos)} repos")
+
+
+def older_than(date_str: str, days: int) -> bool:
+    return date_str <= day(days)
+
+
+def main():
+    old_catalog = {r["fullName"]: r for r in load(OUT / "catalog/apps.json", {}).get("repositories", [])}
+    # state: fullName -> {"checked": date, "apk": bool}; stars: fullName -> stars at last run
+    state = load(OUT / "catalog/state.json", {"checked": {}, "stars": {}})
+    checked, prev_stars = state["checked"], state["stars"]
+
+    # 1. gather candidates (fresh metadata straight from search)
+    candidates = {}
+    def add(items):
+        for it in items:
+            candidates[it["full_name"]] = it
+
+    print("collecting: new / popular / star bands")
+    for topic in TOPICS:  # GitHub search can't OR topics, so one pass per topic
+        base = f"archived:false topic:{topic}"
+        add(search(f"{base} stars:>=3 created:>={day(30)}", "created", 3))
+        add(search(f"{base} stars:>=50 pushed:>={day(30)}", "stars", 3))
+        for band in STAR_BANDS:
+            add(search(f"{base} stars:{band}", "updated", BAND_PAGES))
+    print(f"{len(candidates)} candidates")
+
+    # 2. verify: known hits stay (until recheck), unknown ones are checked, newest/most-starred first
+    verified, budget = {}, MAX_VERIFY
+    # new repos first so the New list is never starved by the star-sorted backlog
+    todo = sorted(candidates.values(),
+                  key=lambda r: (r["created_at"][:10] < day(30), -r["stargazers_count"]))
+    for repo in todo:
+        name = repo["full_name"]
+        info = checked.get(name)
+        fresh = info and not older_than(info["checked"], HIT_RECHECK_DAYS if info["apk"] else MISS_RECHECK_DAYS)
+        if fresh:
+            if info["apk"]:
+                verified[name] = summarize(repo)
+            continue
+        if budget <= 0:
+            if info and info["apk"]:  # out of budget: keep the stale hit rather than dropping it
+                verified[name] = summarize(repo)
+            continue
+        budget -= 1
+        result = has_apk(name)
+        if result is None:
+            continue
+        checked[name] = {"checked": TODAY, "apk": result}
+        if result:
+            verified[name] = summarize(repo)
+    print(f"verified {len(verified)} apps ({MAX_VERIFY - budget} release checks)")
+
+    # keep catalog entries that weren't in this run's search window (don't shrink on a bad day)
+    for name, repo in old_catalog.items():
+        verified.setdefault(name, repo)
+
+    if not verified:
+        sys.exit("ERROR: nothing verified, refusing to overwrite data")
+
+    catalog = sorted(verified.values(), key=lambda r: -r["stargazersCount"])
+
+    # 3. lists
+    def pushed_since(r, n):
+        return (r.get("pushedAt") or r["updatedAt"])[:10] >= day(n)
+
+    new = sorted((r for r in catalog if r.get("createdAt", "")[:10] >= day(30)),
+                 key=lambda r: r["createdAt"], reverse=True)[:LIST_SIZE]
+    popular = [r for r in catalog if pushed_since(r, 30)][:LIST_SIZE]
+
+    def gain(r):  # real trending: stars gained since last run; unseen repos get no gain
+        return r["stargazersCount"] - prev_stars.get(r["fullName"], r["stargazersCount"])
+    active = [r for r in catalog if pushed_since(r, 14)]
+    if prev_stars:
+        trending = sorted(active, key=lambda r: (-gain(r), -r["stargazersCount"]))[:LIST_SIZE]
+    else:  # day 1, no history yet
+        trending = active[:LIST_SIZE]
+
+    write("catalog", catalog)
+    write("trending", trending)
+    write("new", new)
+    write("popular", popular)
+
+    state = {"checked": checked, "stars": {r["fullName"]: r["stargazersCount"] for r in catalog}}
+    (OUT / "catalog/state.json").write_text(json.dumps(state, separators=(",", ":")), encoding="utf-8")
+
+
+if __name__ == "__main__":
     main()
