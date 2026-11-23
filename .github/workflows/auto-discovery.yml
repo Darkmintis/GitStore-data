@@ -28,7 +28,6 @@ jobs:
       - name: Discover Android apps
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISCOVERY_OUTPUT_DIR: trending
         run: python scripts/discover.py
 
       - name: Commit and push
@@ -36,10 +35,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git status --porcelain trending/ | grep .; then
-            git add trending/
-            git commit -m "Update trending ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
+          if git status --porcelain trending/ new/ popular/ catalog/ | grep .; then
+            git add trending/ new/ popular/ catalog/
+            git commit -m "Update discovery data ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
             git push origin main
+            # jsDelivr caches @main for ~12h; purge so users get today's data right away
+            for f in trending new popular catalog; do
+              curl -fsS "https://purge.jsdelivr.net/gh/Darkmintis/GitStore-data@main/$f/apps.json" || true
+            done
           else
-            echo "No trending changes"
+            echo "No data changes"
           fi
