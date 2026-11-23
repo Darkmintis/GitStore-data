@@ -129,9 +129,11 @@ def load(path: Path, default):
 def write(folder: str, repos: list):
     path = OUT / folder / "apps.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(
-        {"lastUpdated": NOW.isoformat().replace("+00:00", "Z"), "totalCount": len(repos),
-         "repositories": repos}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    payload = {"lastUpdated": NOW.isoformat().replace("+00:00", "Z"), "totalCount": len(repos),
+               "repositories": repos}
+    # Small lists are meant to be read (and diffed); the catalog grows to thousands, so keep it compact.
+    fmt = {"separators": (",", ":")} if folder == "catalog" else {"indent": 2}
+    path.write_text(json.dumps(payload, ensure_ascii=False, **fmt), encoding="utf-8")
     print(f"wrote {folder}/apps.json: {len(repos)} repos")
 
 
