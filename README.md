@@ -15,8 +15,10 @@ https://cdn.jsdelivr.net/gh/Darkmintis/GitStore-data@main/catalog/apps.json
 
 | Path | Purpose |
 |------|---------|
-| `trending/` | Daily trending seed (`apps.json`) |
-| `catalog/` | Searchable APK-verified catalog (filled later) |
+| `trending/` | Biggest star gain since the previous daily run |
+| `new/` | Repos created in the last 30 days, newest first |
+| `popular/` | Most-starred repos pushed in the last 30 days |
+| `catalog/` | Every APK-verified repo found so far (the app searches it locally); `state.json` remembers which repos were already checked |
 | `scripts/` | Discovery (`discover.py`) — this is the source of truth |
 
 ## How it updates
