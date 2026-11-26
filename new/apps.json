@@ -1,7 +1,115 @@
 {
-  "lastUpdated": "2026-11-25T06:42:14.059333Z",
+  "lastUpdated": "2026-11-26T06:33:37.206694Z",
   "totalCount": 50,
   "repositories": [
+    {
+      "id": 1472380680,
+      "name": "BatteryWatch",
+      "fullName": "FoxSoftware-code/BatteryWatch",
+      "owner": {
+        "login": "FoxSoftware-code",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/197886072?v=4"
+      },
+      "description": "Android app that shows what drains your battery (batterystats diagnosis, charging monitor, reversible fixes). No internet permission.",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/FoxSoftware-code/BatteryWatch",
+      "stargazersCount": 3,
+      "forksCount": 0,
+      "language": "Kotlin",
+      "topics": [
+        "adb",
+        "android",
+        "android-app",
+        "battery",
+        "battery-life",
+        "battery-monitor",
+        "battery-saver",
+        "batterystats",
+        "jetpack-compose",
+        "kotlin",
+        "oneplus",
+        "shizuku"
+      ],
+      "releasesUrl": "https://api.github.com/repos/FoxSoftware-code/BatteryWatch/releases{/id}",
+      "updatedAt": "2026-11-26T03:36:02Z",
+      "createdAt": "2026-11-25T21:56:16Z",
+      "pushedAt": "2026-11-25T22:35:16Z"
+    },
+    {
+      "id": 1470189497,
+      "name": "Bubble-Android",
+      "fullName": "AprionoN-Officials/Bubble-Android",
+      "owner": {
+        "login": "AprionoN-Officials",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/218555904?v=4"
+      },
+      "description": "Lightweight, privacy-first Android live screen translator (31 offline ML Kit languages), custom Tesseract 5 OCR, full-screen text selector, auto QR/QRIS scanner & multi-engine visual search (Google Lens, Yandex, TinEye). Runs silently via Default Digital Assistant without root or recording popups, with Safe Mode & bilingual EN/ID UI.",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/AprionoN-Officials/Bubble-Android",
+      "stargazersCount": 17,
+      "forksCount": 2,
+      "language": "Kotlin",
+      "topics": [
+        "android",
+        "android-app",
+        "google-lens",
+        "kotlin",
+        "kotlin-android",
+        "mlkit",
+        "mlkit-android",
+        "ocr",
+        "ocr-android",
+        "offline-translation",
+        "qr",
+        "qr-scanner",
+        "qr-scanner-android",
+        "qr-scanner-app",
+        "qrscanner",
+        "screen-translator",
+        "translate",
+        "translater",
+        "visual-search"
+      ],
+      "releasesUrl": "https://api.github.com/repos/AprionoN-Officials/Bubble-Android/releases{/id}",
+      "updatedAt": "2026-11-26T05:45:37Z",
+      "createdAt": "2026-11-24T13:14:58Z",
+      "pushedAt": "2026-11-26T05:26:02Z"
+    },
+    {
+      "id": 1470081114,
+      "name": "oui-spy-recon-app",
+      "fullName": "colonelpanichacks/oui-spy-recon-app",
+      "owner": {
+        "login": "colonelpanichacks",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/90460753?v=4"
+      },
+      "description": "The app for your OUI SPY boards: drones, trackers, cameras and the radios around you, on your phone and on a map. Android and macOS, Linux coming. Get an OUI SPY at colonelpanic.tech",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/colonelpanichacks/oui-spy-recon-app",
+      "stargazersCount": 49,
+      "forksCount": 7,
+      "language": "HTML",
+      "topics": [
+        "android",
+        "bluetooth-low-energy",
+        "counter-surveillance",
+        "drone-detection",
+        "esp32",
+        "esp32-s3",
+        "fpv",
+        "macos",
+        "mesh-network",
+        "oui-spy",
+        "remote-id",
+        "tracker-detection",
+        "wardriving",
+        "wifi"
+      ],
+      "releasesUrl": "https://api.github.com/repos/colonelpanichacks/oui-spy-recon-app/releases{/id}",
+      "updatedAt": "2026-11-26T04:13:11Z",
+      "createdAt": "2026-11-24T11:42:04Z",
+      "pushedAt": "2026-11-26T04:56:09Z"
+    },
     {
       "id": 1469918490,
       "name": "invoke",
@@ -13,7 +121,7 @@
       "description": "Your Android home screen, your way. Fluid, personal, expressive.",
       "defaultBranch": "master",
       "htmlUrl": "https://github.com/PranavPurwar/invoke",
-      "stargazersCount": 25,
+      "stargazersCount": 29,
       "forksCount": 3,
       "language": "Kotlin",
       "topics": [
@@ -25,9 +133,65 @@
         "minimal"
       ],
       "releasesUrl": "https://api.github.com/repos/PranavPurwar/invoke/releases{/id}",
-      "updatedAt": "2026-11-25T05:35:54Z",
+      "updatedAt": "2026-11-26T04:41:33Z",
       "createdAt": "2026-11-24T09:18:39Z",
-      "pushedAt": "2026-11-25T06:24:33Z"
+      "pushedAt": "2026-11-25T13:44:41Z"
+    },
+    {
+      "id": 1469766792,
+      "name": "openclone",
+      "fullName": "Nbill27/openclone",
+      "owner": {
+        "login": "Nbill27",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/108813177?v=4"
+      },
+      "description": "Open source Android app cloner: run two copies of any app on one phone. No ads, no account, no server.",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/Nbill27/openclone",
+      "stargazersCount": 33,
+      "forksCount": 5,
+      "language": "Kotlin",
+      "topics": [
+        "android",
+        "apk-cloner",
+        "app-cloner",
+        "clone-app",
+        "dual-apps",
+        "kotlin",
+        "open-source"
+      ],
+      "releasesUrl": "https://api.github.com/repos/Nbill27/openclone/releases{/id}",
+      "updatedAt": "2026-11-26T06:33:06Z",
+      "createdAt": "2026-11-24T06:50:28Z",
+      "pushedAt": "2026-11-25T13:25:21Z"
+    },
+    {
+      "id": 1469560330,
+      "name": "matchbox-dashboard",
+      "fullName": "taxfraud311/matchbox-dashboard",
+      "owner": {
+        "login": "taxfraud311",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/264880911?v=4"
+      },
+      "description": "Turns an Android tablet into a live info screen for your Mac: system metrics, clock, weather, scores, feeds and more.",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/taxfraud311/matchbox-dashboard",
+      "stargazersCount": 16,
+      "forksCount": 1,
+      "language": "Swift",
+      "topics": [
+        "android",
+        "android-tablet",
+        "dashboard",
+        "fire-tablet",
+        "macos",
+        "menu-bar-app",
+        "swift"
+      ],
+      "releasesUrl": "https://api.github.com/repos/taxfraud311/matchbox-dashboard/releases{/id}",
+      "updatedAt": "2026-11-25T18:15:13Z",
+      "createdAt": "2026-11-24T02:35:22Z",
+      "pushedAt": "2026-11-25T05:27:16Z"
     },
     {
       "id": 1469102380,
@@ -61,6 +225,39 @@
       "pushedAt": "2026-11-24T04:07:58Z"
     },
     {
+      "id": 1468864690,
+      "name": "LeafSign-Android",
+      "fullName": "yejiu0210/LeafSign-Android",
+      "owner": {
+        "login": "yejiu0210",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/175960446?v=4"
+      },
+      "description": "原生 Android 每日签到应用：Jetpack Compose 界面，Android Keystore 本地加密凭证，精确闹钟 + 前台服务定时调度，扫码登录。支持网易云音乐、百度贴吧、森空岛、哔哩哔哩、小黑盒。",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/yejiu0210/LeafSign-Android",
+      "stargazersCount": 3,
+      "forksCount": 0,
+      "language": "Kotlin",
+      "topics": [
+        "android",
+        "android-app",
+        "android-keystore",
+        "bilibili",
+        "jetpack-compose",
+        "kotlin",
+        "material3",
+        "netease-cloud-music",
+        "skland",
+        "task-scheduler",
+        "tieba",
+        "xiaoheihe"
+      ],
+      "releasesUrl": "https://api.github.com/repos/yejiu0210/LeafSign-Android/releases{/id}",
+      "updatedAt": "2026-11-25T15:42:02Z",
+      "createdAt": "2026-11-23T14:21:01Z",
+      "pushedAt": "2026-11-25T01:16:07Z"
+    },
+    {
       "id": 1468163749,
       "name": "GlassLink",
       "fullName": "atikulmunna/GlassLink",
@@ -84,9 +281,9 @@
         "swiftui"
       ],
       "releasesUrl": "https://api.github.com/repos/atikulmunna/GlassLink/releases{/id}",
-      "updatedAt": "2026-11-24T14:20:59Z",
+      "updatedAt": "2026-11-25T10:02:30Z",
       "createdAt": "2026-11-23T01:42:12Z",
-      "pushedAt": "2026-11-24T20:13:39Z"
+      "pushedAt": "2026-11-25T17:46:07Z"
     },
     {
       "id": 1468068023,
@@ -99,7 +296,7 @@
       "description": "Unbar — a DNS-tunnel VPN client based on Soar, by Break The Barriers",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/viahamed/unbar",
-      "stargazersCount": 20,
+      "stargazersCount": 23,
       "forksCount": 1,
       "language": "C",
       "topics": [
@@ -110,9 +307,35 @@
         "vpn"
       ],
       "releasesUrl": "https://api.github.com/repos/viahamed/unbar/releases{/id}",
-      "updatedAt": "2026-11-25T04:24:36Z",
+      "updatedAt": "2026-11-25T20:54:38Z",
       "createdAt": "2026-11-22T23:03:02Z",
       "pushedAt": "2026-11-24T19:43:51Z"
+    },
+    {
+      "id": 1467971113,
+      "name": "HytaleMobile",
+      "fullName": "BelmanteGu/HytaleMobile",
+      "owner": {
+        "login": "BelmanteGu",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/151742873?v=4"
+      },
+      "description": "Hytale running natively on Android: the macOS arm64 client through a Mach-O loader, local worlds with a bundled Java 25 server, touch gamepad. Fork of Hyprism. No game files included.",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/BelmanteGu/HytaleMobile",
+      "stargazersCount": 17,
+      "forksCount": 2,
+      "language": "C#",
+      "topics": [
+        "android",
+        "arm64",
+        "hyprism",
+        "hytale",
+        "port"
+      ],
+      "releasesUrl": "https://api.github.com/repos/BelmanteGu/HytaleMobile/releases{/id}",
+      "updatedAt": "2026-11-26T04:57:05Z",
+      "createdAt": "2026-11-22T20:42:32Z",
+      "pushedAt": "2026-11-26T01:30:02Z"
     },
     {
       "id": 1467931172,
@@ -125,7 +348,7 @@
       "description": "CapCraft Forge: a free, open-source video editor for Android that runs on your phone. Reels, captions, cutouts, templates; no ads, no watermark. A community build of ArtCraft's CapCraft.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/android-forge/capcraft-forge",
-      "stargazersCount": 5,
+      "stargazersCount": 7,
       "forksCount": 4,
       "language": "Rust",
       "topics": [
@@ -147,7 +370,7 @@
         "video-editor"
       ],
       "releasesUrl": "https://api.github.com/repos/android-forge/capcraft-forge/releases{/id}",
-      "updatedAt": "2026-11-24T14:29:34Z",
+      "updatedAt": "2026-11-26T05:28:47Z",
       "createdAt": "2026-11-22T19:52:23Z",
       "pushedAt": "2026-11-24T05:19:41Z"
     },
@@ -163,7 +386,7 @@
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/Kesh-2k/kesh-car-launcher",
       "stargazersCount": 19,
-      "forksCount": 1,
+      "forksCount": 2,
       "language": "Java",
       "topics": [
         "android",
@@ -194,7 +417,7 @@
       "description": "伪造学习通全形式伪造签到与签退😗支持给其他用户扫码代签！兼容自定义位置、动态二维码、选择相册照片签到，以及验证码与人脸识别功能。支持学习通自动刷课程，自动扫描待刷课、自动播放、自动发送合法播放心跳、防休眠🤔。",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/Pybsama/Caochaoxing",
-      "stargazersCount": 16,
+      "stargazersCount": 21,
       "forksCount": 5,
       "language": "Kotlin",
       "topics": [
@@ -220,7 +443,7 @@
         "xuexitong"
       ],
       "releasesUrl": "https://api.github.com/repos/Pybsama/Caochaoxing/releases{/id}",
-      "updatedAt": "2026-11-24T15:46:10Z",
+      "updatedAt": "2026-11-26T00:46:39Z",
       "createdAt": "2026-11-22T12:54:51Z",
       "pushedAt": "2026-11-24T16:06:08Z"
     },
@@ -255,7 +478,7 @@
       "releasesUrl": "https://api.github.com/repos/shuvro-10/lytrix-player/releases{/id}",
       "updatedAt": "2026-11-24T18:38:16Z",
       "createdAt": "2026-11-22T11:35:41Z",
-      "pushedAt": "2026-11-24T14:37:39Z"
+      "pushedAt": "2026-11-25T16:18:43Z"
     },
     {
       "id": 1467488550,
@@ -268,8 +491,8 @@
       "description": "Use an Android phone's calls, SMS, contacts and call history from your iPhone over an end-to-end encrypted Bluetooth link. No server, no account.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/amirwmr/tether",
-      "stargazersCount": 77,
-      "forksCount": 15,
+      "stargazersCount": 98,
+      "forksCount": 24,
       "language": "C",
       "topics": [
         "android",
@@ -281,9 +504,9 @@
         "swift"
       ],
       "releasesUrl": "https://api.github.com/repos/amirwmr/tether/releases{/id}",
-      "updatedAt": "2026-11-25T05:20:33Z",
+      "updatedAt": "2026-11-26T05:53:38Z",
       "createdAt": "2026-11-22T11:27:36Z",
-      "pushedAt": "2026-11-25T06:43:26Z"
+      "pushedAt": "2026-11-25T18:08:19Z"
     },
     {
       "id": 1467360848,
@@ -296,7 +519,7 @@
       "description": "Root-free Android multi-display desktop workstation (LocalDeX, native macOS streaming & Type-C external display) with Liquid Glass window engine.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/lengsukq/OpalDesk",
-      "stargazersCount": 31,
+      "stargazersCount": 50,
       "forksCount": 5,
       "language": "Kotlin",
       "topics": [
@@ -312,9 +535,41 @@
         "swiftui"
       ],
       "releasesUrl": "https://api.github.com/repos/lengsukq/OpalDesk/releases{/id}",
-      "updatedAt": "2026-11-25T06:42:48Z",
+      "updatedAt": "2026-11-26T06:10:02Z",
       "createdAt": "2026-11-22T08:33:24Z",
-      "pushedAt": "2026-11-25T03:26:55Z"
+      "pushedAt": "2026-11-26T05:22:10Z"
+    },
+    {
+      "id": 1466862561,
+      "name": "BreezeMusic-Android",
+      "fullName": "reneryi7/BreezeMusic-Android",
+      "owner": {
+        "login": "reneryi7",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/273060171?v=4"
+      },
+      "description": "BreezeMusic · 微风音乐安卓端 — 基于 Kotlin + Jetpack Compose + Media3 打造的轻量级 Android 酷狗概念版客户端（手机/平板独立双端），内置纯端侧直连架构、64-bit 纯线性母带 DSP 调音台、五款高定动态播放背景、120fps 弹性动效与 KRC 逐字桌面歌词。",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/reneryi7/BreezeMusic-Android",
+      "stargazersCount": 3,
+      "forksCount": 0,
+      "language": "Kotlin",
+      "topics": [
+        "android",
+        "android-app",
+        "android-tablet",
+        "audio-dsp",
+        "exoplayer",
+        "flac",
+        "jetpack-compose",
+        "kotlin",
+        "material3",
+        "media3",
+        "music-player"
+      ],
+      "releasesUrl": "https://api.github.com/repos/reneryi7/BreezeMusic-Android/releases{/id}",
+      "updatedAt": "2026-11-25T16:45:29Z",
+      "createdAt": "2026-11-21T18:57:45Z",
+      "pushedAt": "2026-11-24T20:58:16Z"
     },
     {
       "id": 1466788776,
@@ -327,7 +582,7 @@
       "description": "循济 TongjiTap — Android tap sequences, screenshot color triggers, Stride music speed control, and calibrated screen-based Wi-Fi switching. Unofficial personal project.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/GPDdev/TongjiTap",
-      "stargazersCount": 4,
+      "stargazersCount": 3,
       "forksCount": 0,
       "language": "Java",
       "topics": [
@@ -346,7 +601,7 @@
         "wifi"
       ],
       "releasesUrl": "https://api.github.com/repos/GPDdev/TongjiTap/releases{/id}",
-      "updatedAt": "2026-11-24T13:41:04Z",
+      "updatedAt": "2026-11-25T10:18:32Z",
       "createdAt": "2026-11-21T17:27:16Z",
       "pushedAt": "2026-11-24T07:06:34Z"
     },
@@ -361,7 +616,7 @@
       "description": "Sol Next: Ultra-fast Android AI phone agent built upon Mika (Apache-2.0) — Rust v3.10 UI pruning, 1:1 native background VirtualDisplay, HTTP/3 QUIC, 64-round anti-pause engine, BYOK AI phone calls & MCP Server (zero built-in API keys). 基于 Mika 重构的极速安卓 AI 手机助理。",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/chongyangzhang92-hub/Sol-Next",
-      "stargazersCount": 31,
+      "stargazersCount": 38,
       "forksCount": 0,
       "language": "Python",
       "topics": [
@@ -387,9 +642,9 @@
         "xiaomi-hyperos"
       ],
       "releasesUrl": "https://api.github.com/repos/chongyangzhang92-hub/Sol-Next/releases{/id}",
-      "updatedAt": "2026-11-25T05:56:54Z",
+      "updatedAt": "2026-11-26T05:03:14Z",
       "createdAt": "2026-11-21T16:40:39Z",
-      "pushedAt": "2026-11-23T02:14:23Z"
+      "pushedAt": "2026-11-25T14:05:11Z"
     },
     {
       "id": 1466700014,
@@ -399,16 +654,20 @@
         "login": "qianyiai",
         "avatarUrl": "https://avatars.githubusercontent.com/u/77205788?v=4"
       },
-      "description": "KuroCat — Free open-source desktop typing cat pet & OBS overlay (Bongo Cat alternative, Tauri v2 + Rust + MCP)｜轻量级透明置顶桌面打字小黑猫伴侣（6款猫咪+鲸鱼娘大肥鱼 / 输密码防偷窥 / OBS透明源 / AI捏猫 / Win·Mac·Linux·Android）",
+      "description": "KuroCat — Free open-source 3D/2D desktop typing cat & AI coding companion (Bongo Cat alternative · Tauri v2 + Rust + MCP · Claude/Codex/DeepSeek/OBS · Win/Mac/Linux/Android)｜开源3D桌面打字小黑猫与AI伴侣",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/qianyiai/kurocat",
-      "stargazersCount": 754,
-      "forksCount": 121,
+      "stargazersCount": 1128,
+      "forksCount": 171,
       "language": "TypeScript",
       "topics": [
+        "3d",
+        "ai-companion",
         "android",
         "bongo-cat",
         "bongocat",
+        "claude-code",
+        "codex",
         "cross-platform",
         "desktop-pet",
         "keyboard-visualizer",
@@ -424,9 +683,9 @@
         "windows"
       ],
       "releasesUrl": "https://api.github.com/repos/qianyiai/kurocat/releases{/id}",
-      "updatedAt": "2026-11-25T06:42:12Z",
+      "updatedAt": "2026-11-26T06:33:18Z",
       "createdAt": "2026-11-21T15:49:31Z",
-      "pushedAt": "2026-11-24T17:16:53Z"
+      "pushedAt": "2026-11-26T06:17:58Z"
     },
     {
       "id": 1466674307,
@@ -492,9 +751,9 @@
         "onecr"
       ],
       "releasesUrl": "https://api.github.com/repos/L-Malakar/oneCR/releases{/id}",
-      "updatedAt": "2026-11-24T17:12:38Z",
+      "updatedAt": "2026-11-26T04:34:50Z",
       "createdAt": "2026-11-21T13:23:10Z",
-      "pushedAt": "2026-11-24T13:58:30Z"
+      "pushedAt": "2026-11-26T04:32:09Z"
     },
     {
       "id": 1466525950,
@@ -534,8 +793,8 @@
       "description": "Open-source, local-first AI agent team for your desktop: multi-agent group chats, computer use, browser, MCP, routines and approvals. macOS, Windows, Linux + Android. Built on pi.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/w01fb0ss/PiBot",
-      "stargazersCount": 568,
-      "forksCount": 85,
+      "stargazersCount": 620,
+      "forksCount": 89,
       "language": "TypeScript",
       "topics": [
         "agent",
@@ -560,9 +819,9 @@
         "typescript"
       ],
       "releasesUrl": "https://api.github.com/repos/w01fb0ss/PiBot/releases{/id}",
-      "updatedAt": "2026-11-25T05:43:44Z",
+      "updatedAt": "2026-11-26T05:51:19Z",
       "createdAt": "2026-11-21T06:54:24Z",
-      "pushedAt": "2026-11-25T03:00:50Z"
+      "pushedAt": "2026-11-26T01:05:50Z"
     },
     {
       "id": 1466256862,
@@ -575,7 +834,7 @@
       "description": "AlmaZoom: 1000x digital zoom for the Samsung Camera (One UI 8 / 9, Galaxy S25 Ultra). Xposed module for Vector / LSPosed, with AlmaLens (60 fps preview, gallery spoiler).",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/zz5644934-design/almazoom",
-      "stargazersCount": 25,
+      "stargazersCount": 26,
       "forksCount": 2,
       "language": "Java",
       "topics": [
@@ -591,9 +850,39 @@
         "xposed-module"
       ],
       "releasesUrl": "https://api.github.com/repos/zz5644934-design/almazoom/releases{/id}",
-      "updatedAt": "2026-11-24T18:24:19Z",
+      "updatedAt": "2026-11-25T20:17:46Z",
       "createdAt": "2026-11-21T06:31:53Z",
       "pushedAt": "2026-11-22T19:51:47Z"
+    },
+    {
+      "id": 1466088008,
+      "name": "honk-android",
+      "fullName": "Wcoom/honk-android",
+      "owner": {
+        "login": "Wcoom",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/105034279?v=4"
+      },
+      "description": "Honk (Linux eBPF transparent proxy) full-feature port for Android ARM64 (GKI 6.6+) with BoxProxy & embedded Doona WebUI",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/Wcoom/honk-android",
+      "stargazersCount": 16,
+      "forksCount": 2,
+      "language": "Rust",
+      "topics": [
+        "android",
+        "arm64",
+        "boxproxy",
+        "doona",
+        "ebpf",
+        "honk",
+        "quic",
+        "rust",
+        "transparent-proxy"
+      ],
+      "releasesUrl": "https://api.github.com/repos/Wcoom/honk-android/releases{/id}",
+      "updatedAt": "2026-11-25T23:23:11Z",
+      "createdAt": "2026-11-21T02:04:50Z",
+      "pushedAt": "2026-11-25T19:58:28Z"
     },
     {
       "id": 1466080249,
@@ -659,7 +948,7 @@
       "releasesUrl": "https://api.github.com/repos/sagheerys/vidhoist/releases{/id}",
       "updatedAt": "2026-11-23T18:57:18Z",
       "createdAt": "2026-11-20T20:19:50Z",
-      "pushedAt": "2026-11-20T23:09:49Z"
+      "pushedAt": "2026-11-26T05:04:22Z"
     },
     {
       "id": 1465388700,
@@ -672,7 +961,7 @@
       "description": "Bond Wi-Fi and Cellular into one download stream on iOS & Android — native libtorrent, USB-C export, and SHA-256 verification.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/Muhammad-Favel/FlowDownload-Releases",
-      "stargazersCount": 35,
+      "stargazersCount": 44,
       "forksCount": 0,
       "language": "HTML",
       "topics": [
@@ -690,9 +979,9 @@
         "swiftui"
       ],
       "releasesUrl": "https://api.github.com/repos/Muhammad-Favel/FlowDownload-Releases/releases{/id}",
-      "updatedAt": "2026-11-24T16:02:25Z",
+      "updatedAt": "2026-11-26T06:08:14Z",
       "createdAt": "2026-11-20T12:11:32Z",
-      "pushedAt": "2026-11-23T09:30:27Z"
+      "pushedAt": "2026-11-26T05:53:43Z"
     },
     {
       "id": 1465191952,
@@ -735,7 +1024,7 @@
       "description": "Offline-first encrypted voice recorder and diary with local speech-to-text transcription",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/locvel/voite",
-      "stargazersCount": 81,
+      "stargazersCount": 90,
       "forksCount": 1,
       "language": "Dart",
       "topics": [
@@ -750,7 +1039,7 @@
         "whisper"
       ],
       "releasesUrl": "https://api.github.com/repos/locvel/voite/releases{/id}",
-      "updatedAt": "2026-11-24T22:10:14Z",
+      "updatedAt": "2026-11-26T00:33:58Z",
       "createdAt": "2026-11-20T06:41:11Z",
       "pushedAt": "2026-11-20T19:35:22Z"
     },
@@ -847,7 +1136,7 @@
       "description": "Aether — open-source AI agent for Android (Kotlin, Jetpack Compose). Local LLM chat app with bash, file and MCP tools, subagents, offline Alpine/Proot runtime, Termux and Shizuku support. Signed APK releases. ИИ-агент на телефон: нейросеть на Android с инструментами.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/aether-aiagent/aether",
-      "stargazersCount": 40,
+      "stargazersCount": 41,
       "forksCount": 2,
       "language": "Kotlin",
       "topics": [
@@ -873,7 +1162,7 @@
         "termux"
       ],
       "releasesUrl": "https://api.github.com/repos/aether-aiagent/aether/releases{/id}",
-      "updatedAt": "2026-11-23T08:14:42Z",
+      "updatedAt": "2026-11-26T05:47:34Z",
       "createdAt": "2026-11-19T15:41:33Z",
       "pushedAt": "2026-11-21T12:53:54Z"
     },
@@ -916,7 +1205,7 @@
       "description": "GTA Liberty City Stories and Vice City Stories recompiled for PC (Windows, Mac) and Android, joined into one world, with a mod loader. Unofficial fan project: bring your own discs.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/batinium/gta-stories-recompiled",
-      "stargazersCount": 81,
+      "stargazersCount": 82,
       "forksCount": 0,
       "language": "C++",
       "topics": [
@@ -937,7 +1226,7 @@
         "vice-city-stories"
       ],
       "releasesUrl": "https://api.github.com/repos/batinium/gta-stories-recompiled/releases{/id}",
-      "updatedAt": "2026-11-25T03:41:48Z",
+      "updatedAt": "2026-11-25T20:34:49Z",
       "createdAt": "2026-11-19T11:31:53Z",
       "pushedAt": "2026-11-22T10:19:29Z"
     },
@@ -952,7 +1241,7 @@
       "description": "Mirra (镜衣): put a face, an outfit and a pose from reference galleries together with an image model, in the cloud or on your own server. A cross-platform NSGo app in Go.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/yldm-ai/mirra",
-      "stargazersCount": 105,
+      "stargazersCount": 106,
       "forksCount": 21,
       "language": "Go",
       "topics": [
@@ -971,7 +1260,7 @@
         "windows"
       ],
       "releasesUrl": "https://api.github.com/repos/yldm-ai/mirra/releases{/id}",
-      "updatedAt": "2026-11-23T06:40:07Z",
+      "updatedAt": "2026-11-26T01:13:30Z",
       "createdAt": "2026-11-19T11:02:53Z",
       "pushedAt": "2026-11-20T23:56:32Z"
     },
@@ -986,7 +1275,7 @@
       "description": "Open-source Android app that unlocks Xiaomi, Redmi and POCO bootloaders without a PC. Runs the official server-authorized Mi Unlock flow over USB OTG fastboot — no root, Termux or Windows needed.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/nexarioneo/BootloaderS",
-      "stargazersCount": 6,
+      "stargazersCount": 10,
       "forksCount": 0,
       "language": "Kotlin",
       "topics": [
@@ -1010,7 +1299,7 @@
         "xiaomi-tools"
       ],
       "releasesUrl": "https://api.github.com/repos/nexarioneo/BootloaderS/releases{/id}",
-      "updatedAt": "2026-11-24T16:26:59Z",
+      "updatedAt": "2026-11-25T12:08:12Z",
       "createdAt": "2026-11-19T09:03:50Z",
       "pushedAt": "2026-11-25T04:12:30Z"
     },
@@ -1041,7 +1330,7 @@
       "releasesUrl": "https://api.github.com/repos/corqna-e/xmu_assistant_plus/releases{/id}",
       "updatedAt": "2026-11-20T13:36:00Z",
       "createdAt": "2026-11-19T06:58:50Z",
-      "pushedAt": "2026-11-23T02:25:59Z"
+      "pushedAt": "2026-11-25T10:40:35Z"
     },
     {
       "id": 1463456970,
@@ -1054,7 +1343,7 @@
       "description": "Static recompilation of Dark Souls II: Scholar of the First Sin (Xbox 360) for Android arm64",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/Lazaer-YZY/ds2-sotfs-recomp",
-      "stargazersCount": 40,
+      "stargazersCount": 41,
       "forksCount": 1,
       "language": "C",
       "topics": [
@@ -1067,9 +1356,9 @@
         "xbox-360"
       ],
       "releasesUrl": "https://api.github.com/repos/Lazaer-YZY/ds2-sotfs-recomp/releases{/id}",
-      "updatedAt": "2026-11-24T10:30:22Z",
+      "updatedAt": "2026-11-25T07:24:25Z",
       "createdAt": "2026-11-18T23:41:41Z",
-      "pushedAt": "2026-11-25T02:58:57Z"
+      "pushedAt": "2026-11-26T01:24:44Z"
     },
     {
       "id": 1463111598,
@@ -1082,7 +1371,7 @@
       "description": "deepseek梦男梦女福音，基本复刻了deep seek app端的体验，并加入了一些小优化，仅需导入原有对话文件，即可将deep seek从邪恶的梁文峰限额手中拯救出来。",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/S-Neur/deepseek-api-app",
-      "stargazersCount": 11,
+      "stargazersCount": 12,
       "forksCount": 1,
       "language": "TypeScript",
       "topics": [
@@ -1094,7 +1383,7 @@
         "deepseek"
       ],
       "releasesUrl": "https://api.github.com/repos/S-Neur/deepseek-api-app/releases{/id}",
-      "updatedAt": "2026-11-24T13:08:45Z",
+      "updatedAt": "2026-11-26T04:19:13Z",
       "createdAt": "2026-11-18T17:20:16Z",
       "pushedAt": "2026-11-18T17:40:46Z"
     },
@@ -1144,7 +1433,7 @@
       "description": "Looper Music: your own music files and YouTube Music in one Android player. Word-synced lyrics, album-coloured themes, smart crossfade, EQ. No ads, GPL-3.0.",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/devvlooper/LooperMusic",
-      "stargazersCount": 21,
+      "stargazersCount": 24,
       "forksCount": 3,
       "language": "Dart",
       "topics": [
@@ -1170,9 +1459,46 @@
         "youtube-music"
       ],
       "releasesUrl": "https://api.github.com/repos/devvlooper/LooperMusic/releases{/id}",
-      "updatedAt": "2026-11-24T02:55:23Z",
+      "updatedAt": "2026-11-25T20:58:50Z",
       "createdAt": "2026-11-18T10:34:26Z",
-      "pushedAt": "2026-11-23T12:28:05Z"
+      "pushedAt": "2026-11-25T18:20:47Z"
+    },
+    {
+      "id": 1462380128,
+      "name": "antigravity-arm64-android",
+      "fullName": "Comzvy/antigravity-arm64-android",
+      "owner": {
+        "login": "Comzvy",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/356904378?v=4"
+      },
+      "description": "Native Android ARM64 port of Antigravity v2.35.0 — AI coding agent on Bionic userspace with BYOK gateway, voice mode, skills catalogue, and PTY terminal",
+      "defaultBranch": "main",
+      "htmlUrl": "https://github.com/Comzvy/antigravity-arm64-android",
+      "stargazersCount": 3,
+      "forksCount": 0,
+      "language": "JavaScript",
+      "topics": [
+        "aarch64",
+        "ai-agent",
+        "ai-coding-assistant",
+        "android",
+        "android-app",
+        "antigravity",
+        "arm64",
+        "bionic",
+        "claude",
+        "gemini",
+        "llm",
+        "mobile-ide",
+        "openai",
+        "shizuku",
+        "termux-alternative",
+        "voice-assistant"
+      ],
+      "releasesUrl": "https://api.github.com/repos/Comzvy/antigravity-arm64-android/releases{/id}",
+      "updatedAt": "2026-11-25T19:37:22Z",
+      "createdAt": "2026-11-18T05:55:51Z",
+      "pushedAt": "2026-11-24T08:12:24Z"
     },
     {
       "id": 1462190502,
@@ -1185,8 +1511,8 @@
       "description": "记清每个邮箱、手机号注册/绑定了哪些网站和 App · 网页 + iOS + 安卓三端，原生 SwiftUI / Jetpack Compose，加密同步互通",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/Ckxkx/account-atlas",
-      "stargazersCount": 189,
-      "forksCount": 14,
+      "stargazersCount": 200,
+      "forksCount": 15,
       "language": "Kotlin",
       "topics": [
         "account-manager",
@@ -1197,9 +1523,9 @@
         "swiftui"
       ],
       "releasesUrl": "https://api.github.com/repos/Ckxkx/account-atlas/releases{/id}",
-      "updatedAt": "2026-11-25T06:01:00Z",
+      "updatedAt": "2026-11-26T05:06:55Z",
       "createdAt": "2026-11-18T01:50:00Z",
-      "pushedAt": "2026-11-24T16:37:50Z"
+      "pushedAt": "2026-11-26T04:38:02Z"
     },
     {
       "id": 1461831169,
@@ -1212,7 +1538,7 @@
       "description": "LSPosed module for switching XiaoAi chat, voice, image, and device-control AI providers",
       "defaultBranch": "dev",
       "htmlUrl": "https://github.com/SeimoDev/XiaoAiSwitch",
-      "stargazersCount": 34,
+      "stargazersCount": 37,
       "forksCount": 5,
       "language": "Java",
       "topics": [
@@ -1223,9 +1549,9 @@
         "xposed"
       ],
       "releasesUrl": "https://api.github.com/repos/SeimoDev/XiaoAiSwitch/releases{/id}",
-      "updatedAt": "2026-11-25T02:39:23Z",
+      "updatedAt": "2026-11-26T02:22:17Z",
       "createdAt": "2026-11-17T18:44:36Z",
-      "pushedAt": "2026-11-24T14:29:17Z"
+      "pushedAt": "2026-11-25T11:39:55Z"
     },
     {
       "id": 1461766355,
@@ -1238,7 +1564,7 @@
       "description": "接入DeepSeek API 的安卓客户端：内置界面离线启动，支持生图、长期记忆与多套接口配置",
       "defaultBranch": "main",
       "htmlUrl": "https://github.com/NyaNyaMan/DeepsleepChat",
-      "stargazersCount": 3,
+      "stargazersCount": 4,
       "forksCount": 0,
       "language": "TypeScript",
       "topics": [
@@ -1250,7 +1576,7 @@
         "webview"
       ],
       "releasesUrl": "https://api.github.com/repos/NyaNyaMan/DeepsleepChat/releases{/id}",
-      "updatedAt": "2026-11-22T16:51:13Z",
+      "updatedAt": "2026-11-25T08:16:26Z",
       "createdAt": "2026-11-17T17:46:12Z",
       "pushedAt": "2026-11-18T19:46:03Z"
     },
@@ -1315,324 +1641,6 @@
       "updatedAt": "2026-11-18T04:43:49Z",
       "createdAt": "2026-11-17T05:50:41Z",
       "pushedAt": "2026-11-17T06:16:05Z"
-    },
-    {
-      "id": 1460646495,
-      "name": "grab",
-      "fullName": "Asta39/grab",
-      "owner": {
-        "login": "Asta39",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/174248760?v=4"
-      },
-      "description": "Paste a link. Get the file. Free, open-source app for saving video, audio and subtitles from TikTok, YouTube, Instagram, Pinterest and 1,800+ sites. Android, macOS and Windows.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/Asta39/grab",
-      "stargazersCount": 17,
-      "forksCount": 1,
-      "language": "Dart",
-      "topics": [
-        "android",
-        "dart",
-        "ffmpeg",
-        "flutter",
-        "instagram-downloader",
-        "macos",
-        "open-source",
-        "tiktok-downloader",
-        "video-downloader",
-        "windows",
-        "youtube-downloader",
-        "yt-dlp"
-      ],
-      "releasesUrl": "https://api.github.com/repos/Asta39/grab/releases{/id}",
-      "updatedAt": "2026-11-24T10:37:26Z",
-      "createdAt": "2026-11-16T22:34:11Z",
-      "pushedAt": "2026-11-24T20:25:59Z"
-    },
-    {
-      "id": 1460458954,
-      "name": "tupo_vision",
-      "fullName": "KeonyRus/tupo_vision",
-      "owner": {
-        "login": "KeonyRus",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/64161569?v=4"
-      },
-      "description": "Your own AI in Ray-Ban Meta glasses on Android: GPT on your ChatGPT plan (no API key) or Gemini Live voice, seeing through the glasses camera.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/KeonyRus/tupo_vision",
-      "stargazersCount": 19,
-      "forksCount": 7,
-      "language": "Kotlin",
-      "topics": [
-        "android",
-        "android-application",
-        "chatgpt",
-        "gemini",
-        "ray-ban-meta",
-        "ray-ban-meta-smart-glasses",
-        "voice-ai"
-      ],
-      "releasesUrl": "https://api.github.com/repos/KeonyRus/tupo_vision/releases{/id}",
-      "updatedAt": "2026-11-23T03:26:05Z",
-      "createdAt": "2026-11-16T19:17:51Z",
-      "pushedAt": "2026-11-16T23:07:42Z"
-    },
-    {
-      "id": 1460177438,
-      "name": "unicanta",
-      "fullName": "303562915/unicanta",
-      "owner": {
-        "login": "303562915",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/73573019?v=4"
-      },
-      "description": "Canta unicanta — 免 root 卸载系统应用 / uninstall preinstalled Android apps without root. Device-aware safety rules, community plans, self-hosted telemetry.",
-      "defaultBranch": "master",
-      "htmlUrl": "https://github.com/303562915/unicanta",
-      "stargazersCount": 66,
-      "forksCount": 0,
-      "language": "Kotlin",
-      "topics": [
-        "android",
-        "compose-multiplatform",
-        "debloat",
-        "shizuku",
-        "uninstaller"
-      ],
-      "releasesUrl": "https://api.github.com/repos/303562915/unicanta/releases{/id}",
-      "updatedAt": "2026-11-25T05:38:40Z",
-      "createdAt": "2026-11-16T15:06:58Z",
-      "pushedAt": "2026-11-25T06:11:46Z"
-    },
-    {
-      "id": 1459963754,
-      "name": "guomu",
-      "fullName": "DearLicy/guomu",
-      "owner": {
-        "login": "DearLicy",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/113395685?v=4"
-      },
-      "description": "果幕 - 黄果短剧第三方 Flutter 客户端，支持 Android、iOS、离线缓存与网页预览",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/DearLicy/guomu",
-      "stargazersCount": 77,
-      "forksCount": 14,
-      "language": "Dart",
-      "topics": [
-        "android",
-        "dart",
-        "dynamic-island",
-        "flutter",
-        "flutter-app",
-        "github-pages",
-        "hls",
-        "huangguo",
-        "huangguo-drama",
-        "ios",
-        "offline-download",
-        "open-source",
-        "short-drama",
-        "short-drama-client",
-        "video-player",
-        "web"
-      ],
-      "releasesUrl": "https://api.github.com/repos/DearLicy/guomu/releases{/id}",
-      "updatedAt": "2026-11-24T15:07:24Z",
-      "createdAt": "2026-11-16T12:03:13Z",
-      "pushedAt": "2026-11-24T08:27:38Z"
-    },
-    {
-      "id": 1459954955,
-      "name": "Hoard",
-      "fullName": "Md-nexus/Hoard",
-      "owner": {
-        "login": "Md-nexus",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/131878048?v=4"
-      },
-      "description": "Save Instagram, TikTok, X and 1000+ more videos from the Android share sheet, in the background. Flutter + Kotlin + yt-dlp.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/Md-nexus/Hoard",
-      "stargazersCount": 3,
-      "forksCount": 0,
-      "language": "Kotlin",
-      "topics": [
-        "android",
-        "android-app",
-        "dart",
-        "downloader",
-        "flutter",
-        "instagram",
-        "kotlin",
-        "open-source",
-        "share-sheet",
-        "social-media",
-        "tiktok",
-        "twitter",
-        "video-downloader",
-        "yt-dlp"
-      ],
-      "releasesUrl": "https://api.github.com/repos/Md-nexus/Hoard/releases{/id}",
-      "updatedAt": "2026-11-20T18:21:48Z",
-      "createdAt": "2026-11-16T11:54:50Z",
-      "pushedAt": "2026-11-16T12:33:37Z"
-    },
-    {
-      "id": 1459849988,
-      "name": "tuomin",
-      "fullName": "Chen-Yu-Qing2005/tuomin",
-      "owner": {
-        "login": "Chen-Yu-Qing2005",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/345601014?v=4"
-      },
-      "description": "脱敏 — Android 本地截图隐私处理工具",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/Chen-Yu-Qing2005/tuomin",
-      "stargazersCount": 125,
-      "forksCount": 16,
-      "language": "Kotlin",
-      "topics": [
-        "android",
-        "jetpack-compose",
-        "kotlin",
-        "offline",
-        "privacy",
-        "redaction",
-        "screenshot"
-      ],
-      "releasesUrl": "https://api.github.com/repos/Chen-Yu-Qing2005/tuomin/releases{/id}",
-      "updatedAt": "2026-11-23T07:03:02Z",
-      "createdAt": "2026-11-16T10:13:14Z",
-      "pushedAt": "2026-11-16T10:15:07Z"
-    },
-    {
-      "id": 1459553132,
-      "name": "flick-tv",
-      "fullName": "alphasixtyfive/flick-tv",
-      "owner": {
-        "login": "alphasixtyfive",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/55880648?v=4"
-      },
-      "description": "A launcher for Android TV and Google TV with family profiles, photo wallpapers and Home Assistant controls.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/alphasixtyfive/flick-tv",
-      "stargazersCount": 20,
-      "forksCount": 1,
-      "language": "Kotlin",
-      "topics": [
-        "android",
-        "android-tv",
-        "compose-for-tv",
-        "family-profiles",
-        "google-tv",
-        "home-assistant",
-        "jetpack-compose",
-        "kotlin",
-        "launcher",
-        "parental-controls",
-        "slideshow",
-        "tv-launcher",
-        "wallpaper"
-      ],
-      "releasesUrl": "https://api.github.com/repos/alphasixtyfive/flick-tv/releases{/id}",
-      "updatedAt": "2026-11-24T21:04:48Z",
-      "createdAt": "2026-11-16T04:47:00Z",
-      "pushedAt": "2026-11-22T13:27:00Z"
-    },
-    {
-      "id": 1459307390,
-      "name": "drift",
-      "fullName": "dan-el-7/drift",
-      "owner": {
-        "login": "dan-el-7",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/50983918?v=4"
-      },
-      "description": "A high-performance, open-source file transfer client using direct device-to-device connections.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/dan-el-7/drift",
-      "stargazersCount": 39,
-      "forksCount": 1,
-      "language": "Rust",
-      "topics": [
-        "android",
-        "file-transfer",
-        "filesharing",
-        "kotlin",
-        "local-network",
-        "peer-to-peer",
-        "rust",
-        "wifi-direct"
-      ],
-      "releasesUrl": "https://api.github.com/repos/dan-el-7/drift/releases{/id}",
-      "updatedAt": "2026-11-24T21:44:22Z",
-      "createdAt": "2026-11-15T22:39:02Z",
-      "pushedAt": "2026-11-18T20:23:10Z"
-    },
-    {
-      "id": 1459201560,
-      "name": "tarn-browser",
-      "fullName": "Quavon-dev/tarn-browser",
-      "owner": {
-        "login": "Quavon-dev",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/200292274?v=4"
-      },
-      "description": "An open-source, keyboard-first web browser built in Rust. Vertical tabs, separate profiles, and built-in ad and tracker blocking. No telemetry or accounts.",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/Quavon-dev/tarn-browser",
-      "stargazersCount": 30,
-      "forksCount": 1,
-      "language": "Rust",
-      "topics": [
-        "adblock",
-        "android",
-        "browser",
-        "chromium",
-        "gpui",
-        "ios",
-        "linux",
-        "macos",
-        "privacy",
-        "rust",
-        "tracker-blocker",
-        "web-browser",
-        "webkit",
-        "windows"
-      ],
-      "releasesUrl": "https://api.github.com/repos/Quavon-dev/tarn-browser/releases{/id}",
-      "updatedAt": "2026-11-22T13:36:03Z",
-      "createdAt": "2026-11-15T20:12:43Z",
-      "pushedAt": "2026-11-25T06:25:06Z"
-    },
-    {
-      "id": 1458799606,
-      "name": "Skip-Ad",
-      "fullName": "xiaobaiba999/Skip-Ad",
-      "owner": {
-        "login": "xiaobaiba999",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/101786261?v=4"
-      },
-      "description": "安卓开屏广告秒跳引擎（无障碍代点「跳过」）· v7.15.13 app→app 跳转接管：竞速自检梯+阴性快重试+IME 零劫持（跳转到另一个 app 开屏不再「没触发」）· JVM 4530 断言 + 服务级 48 项全绿 · APK 870KB 零明文凭据 · 更新链 SHA-256 校验（使用前请阅 README 免责声明）",
-      "defaultBranch": "main",
-      "htmlUrl": "https://github.com/xiaobaiba999/Skip-Ad",
-      "stargazersCount": 3,
-      "forksCount": 0,
-      "language": "Java",
-      "topics": [
-        "accessibility",
-        "accessibility-service",
-        "ad-blocker",
-        "ad-skip",
-        "adblock",
-        "android",
-        "android-app",
-        "gkd",
-        "gkd-subscription",
-        "open-source",
-        "skip-ad",
-        "splash-ad"
-      ],
-      "releasesUrl": "https://api.github.com/repos/xiaobaiba999/Skip-Ad/releases{/id}",
-      "updatedAt": "2026-11-25T06:34:13Z",
-      "createdAt": "2026-11-15T12:54:47Z",
-      "pushedAt": "2026-11-25T06:35:32Z"
     }
   ]
 }
